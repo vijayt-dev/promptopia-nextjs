@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { useSession } from "next-auth/react";
+//import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import Form from "@components/Form";
+import { useSelector } from "react-redux";
 
 const CreatePrompt = () => {
   const router = useRouter();
-  const { data: session } = useSession();
+  //const { data: session } = useSession();
+  const user = useSelector((state) => state.authPersistedReducer?.user);
 
   const [submitting, setIsSubmitting] = useState(false);
   const [post, setPost] = useState({ prompt: "", tag: "" });
@@ -22,7 +24,7 @@ const CreatePrompt = () => {
         method: "POST",
         body: JSON.stringify({
           prompt: post.prompt,
-          userId: session?.user.id,
+          userId: user?.value.id,
           tag: post.tag,
         }),
       });
