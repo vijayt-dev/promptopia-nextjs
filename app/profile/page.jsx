@@ -1,27 +1,25 @@
 "use client";
-
-import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 import Profile from "@components/Profile";
 
 const MyProfile = () => {
   const router = useRouter();
-  const { data: session } = useSession();
-
+  const user = useSelector((state) => state.authPersistedReducer?.user);
   const [myPosts, setMyPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/posts`);
+      const response = await fetch(`/api/users/${user?.value.id}/posts`);
       const data = await response.json();
 
       setMyPosts(data);
     };
 
-    if (session?.user.id) fetchPosts();
-  }, [session?.user.id]);
+    if (user?.value.id) fetchPosts();
+  }, [user?.value.id]);
 
   const handleEdit = (post) => {
     router.push(`/update-prompt?id=${post._id}`);
