@@ -1,6 +1,4 @@
 "use client";
-
-// import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
@@ -9,7 +7,6 @@ import Profile from "@components/Profile";
 
 const MyProfile = () => {
   const router = useRouter();
-  // const { data: session } = useSession();
   const user = useSelector((state) => state.authPersistedReducer?.user);
   const [myPosts, setMyPosts] = useState([]);
 

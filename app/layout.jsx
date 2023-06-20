@@ -2,9 +2,7 @@ import "@styles/globals.css";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 import ReduxProvider from "@redux/provider";
-//import Gate from "@redux/persistGate";
-// import { PersistGate } from "redux-persist/integration/react";
-// import { persistor } from "@redux/store";
+import Gate from "@redux/persistGate";
 export const metadata = {
   title: "Promptopia",
   description: "Discover & Share AI Prompts",
@@ -15,8 +13,7 @@ const RootLayout = ({ children }) => (
     <body>
       <Provider>
         <ReduxProvider>
-          {/* <PersistGate loading={null} persistor={persistor}> */}
-          {/* <Gate> */}
+          <Gate>
             <div className="main">
               <div className="gradient" />
             </div>
@@ -25,8 +22,7 @@ const RootLayout = ({ children }) => (
               <Nav />
               {children}
             </main>
-            {/* </PersistGate> */}
-          {/* </Gate> */}
+          </Gate>
         </ReduxProvider>
       </Provider>
     </body>

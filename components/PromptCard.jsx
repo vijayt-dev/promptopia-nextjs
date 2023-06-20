@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-// import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
 const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
-  // const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
   const user = useSelector((state) => state.authPersistedReducer?.user);
@@ -15,7 +13,6 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const [copied, setCopied] = useState("");
 
   const handleProfileClick = () => {
-
     if (post.creator._id === user?.value.id) return router.push("/profile");
 
     router.push(`/profile/${post.creator._id}?name=${post.creator.username}`);
