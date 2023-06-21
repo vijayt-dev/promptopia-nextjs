@@ -18,7 +18,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
   );
 };
 
-const Feed = ({allPosts}) => {
+const Feed = () => {
  const [allPosts, setAllPosts] = useState([]);
 
   const [searchText, setSearchText] = useState("");
