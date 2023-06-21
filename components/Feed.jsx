@@ -1,9 +1,7 @@
 "use client";
-import useSWR from 'swr'
 import { useState, useEffect } from "react";
 
 import PromptCard from "./PromptCard";
-const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
@@ -20,28 +18,21 @@ const PromptCardList = ({ data, handleTagClick }) => {
 };
 
 const Feed = () => {
-const { data , error } = useSWR('/api/prompt', fetcher);
-console.log(data);
  const [allPosts, setAllPosts] = useState([]);
 
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
 
-  // const fetchPosts = async () => {
-  // const response = await fetch("/api/prompt");
-  // const data = await response.json();
-  // setAllPosts(data);
-  // };
+  const fetchPosts = async () => {
+  const response = await fetch("/api/prompt");
+  const data = await response.json();
+  setAllPosts(data);
+  };
 
-  // useEffect(() => {
-  //    fetchPosts();
-  //  }, []);
   useEffect(() => {
-      if(data){
-        setAllPosts(data);
-      }
-  }, []);
+     fetchPosts();
+   }, []);
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i");
     return allPosts.filter(
