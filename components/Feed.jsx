@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 
 import PromptCard from "./PromptCard";
@@ -34,7 +33,6 @@ const Feed = () => {
   useEffect(() => {
      fetchPosts();
    }, []);
-
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i");
     return allPosts.filter(
