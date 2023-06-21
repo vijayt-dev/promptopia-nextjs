@@ -41,7 +41,7 @@ console.log(data);
       if(data){
         setAllPosts(data);
       }
-  })
+  }, []);
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i");
     return allPosts.filter(
