@@ -1,5 +1,5 @@
 "use client";
-import Feed from "@components/Feed";
+import Feed from "@Feed/page";
 import { useState, useEffect } from "react";
 
 const Home = () => {
@@ -27,7 +27,7 @@ const Home = () => {
         discover, create and share creative prompts
       </p>
 
-      <Feed allPosts={allPosts}/>
+      <Feed />
     </section>
   );
 };
