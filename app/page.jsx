@@ -2,19 +2,19 @@
 import Feed from "@components/Feed";
 import { useState, useEffect } from "react";
 
-const Home = () => {
-  const [allPosts, setAllPosts] = useState([]);
+const Home = ({allPosts}) => {
+  //const [allPosts, setAllPosts] = useState([]);
 
-  const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
-    const data = await response.json();
+  // const fetchPosts = async () => {
+  //   const response = await fetch("/api/prompt");
+  //   const data = await response.json();
 
-    setAllPosts(data);
-  };
+  //   setAllPosts(data);
+  // };
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, []);
   return (
     <section className="w-full flex-center flex-col">
       <h1 className="head_text text-center">
@@ -31,5 +31,15 @@ const Home = () => {
     </section>
   );
 };
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const response = await fetch("/api/prompt");
+  const allPosts = await response.json();
+ 
+  // Pass data to the page via props
+  return { props: { allPosts } }
+}
+
 
 export default Home;
